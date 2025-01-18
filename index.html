@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Micromouse Maze</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+    <label>Rows: <input type="number" id="rows" value="10" min="5" max="50"></label>
+    <label>Columns: <input type="number" id="columns" value="10" min="5" max="50"></label>
+    <button id="generateEmptyMaze">Generate Empty Maze</button>
+    <label>Obstacle Density (%): <input type="number" id="density" value="20" min="0" max="100"></label>
+    <button id="generateRandomMaze" disabled>Generate Randomized Maze</button>
+  </div>
+  <div id="maze"></div>
+  <button id="simulate" disabled>Simulate Micromouse</button>
+  <button id="clearMaze" disabled>Clear Maze</button>
+  <button id="toggleObstacleMode" disabled>Toggle Custom Obstacle Mode</button>
+  <p>Instructions: Click on the grid to set Start, End, or Obstacles.</p>
+  <script src="script.js"></script>
+</body>
+</html>

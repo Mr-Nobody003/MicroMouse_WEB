@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  label {
+    margin: 0 10px;
+  }
+  
+  #maze {
+    display: grid;
+    gap: 2px;
+    margin: 20px auto;
+    width: fit-content;
+  }
+  
+  .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .cell.empty {
+    background-color: #f9f9f9;
+  }
+  
+  .cell.obstacle {
+    background-color: #555;
+  }
+  
+  .cell.start {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .cell.destination {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .cell.path {
+    background-color: #00bcd4;
+    color: black;
+  }
+  
+  .cell:hover {
+    border: 1px solid #000;
+  }
+  
