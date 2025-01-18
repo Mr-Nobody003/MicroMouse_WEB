@@ -3,11 +3,15 @@ document.getElementById("generateRandomMaze").addEventListener("click", generate
 document.getElementById("simulate").addEventListener("click", simulateMicromouse);
 document.getElementById("clearMaze").addEventListener("click", clearMaze);
 document.getElementById("toggleObstacleMode").addEventListener("click", toggleObstacleMode);
+document.getElementById("setStart").addEventListener("click", setStart);
+document.getElementById("setEnd").addEventListener("click", setEnd);
 
 let maze = [];
 let start = null;
 let destination = null;
 let customObstacleMode = false;
+let settingStart = false;
+let settingEnd = false;
 
 function generateEmptyMaze() {
   const rows = parseInt(document.getElementById("rows").value);
@@ -21,6 +25,8 @@ function generateEmptyMaze() {
   document.getElementById("generateRandomMaze").disabled = false;
   document.getElementById("toggleObstacleMode").disabled = false;
   document.getElementById("clearMaze").disabled = false;
+  document.getElementById("setStart").disabled = false;
+  document.getElementById("setEnd").disabled = false;
 }
 
 function generateRandomMaze() {
@@ -54,18 +60,34 @@ function renderMaze(rows, cols) {
 }
 
 function handleCellClick(row, col) {
+  const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+
   if (customObstacleMode) {
+    // Toggle obstacle state in custom obstacle mode
     maze[row][col] = maze[row][col] === 1 ? 0 : 1;
     renderMaze(maze.length, maze[0].length);
+  } else if (start && start[0] === row && start[1] === col) {
+    // If the clicked cell is the start cell, remove the start point and reset it
+    cell.classList.remove("start");
+    start = null;
+  } else if (destination && destination[0] === row && destination[1] === col) {
+    // If the clicked cell is the destination cell, remove the destination and reset it
+    cell.classList.remove("destination");
+    destination = null;
+    document.getElementById("simulate").disabled = true; // Disable simulate button when destination is removed
   } else if (!start) {
+    // Set the new start cell if no start has been set
     start = [row, col];
-    document.querySelector(`[data-row="${row}"][data-col="${col}"]`).classList.add("start");
+    cell.classList.add("start");
   } else if (!destination) {
+    // Set the destination cell if no destination has been set
     destination = [row, col];
-    document.querySelector(`[data-row="${row}"][data-col="${col}"]`).classList.add("destination");
-    document.getElementById("simulate").disabled = false;
+    cell.classList.add("destination");
+    document.getElementById("simulate").disabled = false; // Enable simulation button
   }
 }
+
+
 
 function simulateMicromouse() {
   if (!start || !destination) {
@@ -76,14 +98,20 @@ function simulateMicromouse() {
   const directions = [
     [0, -1], [0, 1], [-1, 0], [1, 0]
   ];
-  const queue = [[...start, 0]];
+  const queue = [[...start, 0]];  // Start the queue with the start position and distance 0
   const visited = Array.from({ length: maze.length }, () => Array(maze[0].length).fill(false));
   const parents = Array.from({ length: maze.length }, () => Array(maze[0].length).fill(null));
 
   visited[start[0]][start[1]] = true;
 
   while (queue.length) {
-    const [x, y, dist] = queue.shift();
+    const [x, y, dist] = queue.shift();  // Get the current position and distance
+
+    // Update the cell to show the distance (except for start and destination)
+    const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
+    if (x !== start[0] || y !== start[1]) {
+      cell.innerText = dist;  // Set the distance in the cell
+    }
 
     if (x === destination[0] && y === destination[1]) {
       reconstructPath(parents, x, y);
@@ -96,7 +124,7 @@ function simulateMicromouse() {
       if (nx >= 0 && nx < maze.length && ny >= 0 && ny < maze[0].length &&
           maze[nx][ny] === 0 && !visited[nx][ny]) {
         visited[nx][ny] = true;
-        queue.push([nx, ny, dist + 1]);
+        queue.push([nx, ny, dist + 1]);  // Add the new position with an incremented distance
         parents[nx][ny] = [x, y];
       }
     }
@@ -105,10 +133,13 @@ function simulateMicromouse() {
   alert("No path found.");
 }
 
+
 function reconstructPath(parents, x, y) {
   while (parents[x][y]) {
     const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
-    cell.classList.add("path");
+    if (!(x === destination[0] && y === destination[1])) {
+      cell.classList.add("path");
+    }
     [x, y] = parents[x][y];
   }
 }
@@ -124,4 +155,14 @@ function clearMaze() {
 function toggleObstacleMode() {
   customObstacleMode = !customObstacleMode;
   alert(customObstacleMode ? "Custom Obstacle Mode Enabled." : "Custom Obstacle Mode Disabled.");
+}
+
+function setStart() {
+  settingStart = true;
+  alert("Click on a cell to set the start point.");
+}
+
+function setEnd() {
+  settingEnd = true;
+  alert("Click on a cell to set the destination point.");
 }
