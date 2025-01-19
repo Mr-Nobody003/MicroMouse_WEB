@@ -109,7 +109,7 @@ This project is licensed under the MIT License. See `LICENSE` for more details.
 
 ## Acknowledgments
 
-- Inspired by the Micromouse competition for robotics enthusiasts.
+- AI Assignment-1.
 - Built with HTML, CSS, and JavaScript.
 
 ---
