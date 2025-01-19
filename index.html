@@ -18,7 +18,13 @@
   </div>
   <div>
     <button id="generateRandomMaze" disabled>Generate Randomized Maze (based on the density) </button>
-    <button id="toggleObstacleMode" disabled>Toggle Custom Obstacle Mode</button>
+    <div>
+      <label class="switch">
+        <input type="checkbox" id="toggleObstacleMode" disabled>
+        <span class="slider"></span>
+      </label>
+      <span>Custom Obstacle Mode</span>
+    </div>
   <div>
   </div>
   </div>
@@ -34,8 +40,9 @@
   <div>Instructions:</div>
   <div id="instructions">
     <p>1. Click on the "Generate Empty Maze" button to generate an empty maze.</p>
-    <p>2. Click on the "Generate Randomized Maze" button to generate a maze with random obstacles based on the density.</p>
-    <p>3. Click on the "Toggle Custom Obstacle Mode" button to toggle the custom obstacle mode. In this mode, you can click on the cells to add or remove obstacles.</p>
+    <p>2.  (a)Click on the "Generate Randomized Maze" button to generate a maze with random obstacles based on the density. or 
+    (b) Click on the "Custom Obstacle Mode" button to toggle the custom obstacle mode. In this mode, you can click on the cells to add or remove obstacles.</p>
+    <p>3. If the  "Custom Obstacle Mode" button is on switch it off . After that you can set the start and end</p>
     <p>4. Click on the "Simulate Micromouse" button to simulate the micromouse in the maze.</p>
     <p>5. Click on the "Clear Maze" button to clear the maze.</p>
   </div>

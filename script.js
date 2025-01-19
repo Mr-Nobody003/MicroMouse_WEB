@@ -159,8 +159,8 @@ function toggleObstacleMode() {
   document.getElementById("setStart").disabled = customObstacleMode;
   document.getElementById("setEnd").disabled = customObstacleMode;
 
-  alert(customObstacleMode ? "Custom Obstacle Mode Enabled. Click on cells to toggle obstacles. Click again to disable. Then set start and end points." 
-                           : "Custom Obstacle Mode Disabled. You can set Start and End points.");
+  // alert(customObstacleMode ? "Custom Obstacle Mode Enabled. Click on cells to toggle obstacles. Click again to disable. Then set start and end points." 
+  //                          : "Custom Obstacle Mode Disabled. You can set Start and End points.");
 }
 
 function setStart() {
