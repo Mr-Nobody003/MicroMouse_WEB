@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/2f5e9761-892c-4624-a1e0-a42dcfe5476e)
 
 # Micromouse Maze Simulator
 
