@@ -154,15 +154,21 @@ function clearMaze() {
 
 function toggleObstacleMode() {
   customObstacleMode = !customObstacleMode;
-  alert(customObstacleMode ? "Custom Obstacle Mode Enabled." : "Custom Obstacle Mode Disabled.");
+
+  // Disable/Enable the Set Start and Set End buttons based on obstacle mode state
+  document.getElementById("setStart").disabled = customObstacleMode;
+  document.getElementById("setEnd").disabled = customObstacleMode;
+
+  alert(customObstacleMode ? "Custom Obstacle Mode Enabled. Click on cells to toggle obstacles. Click again to disable. Then set start and end points." 
+                           : "Custom Obstacle Mode Disabled. You can set Start and End points.");
 }
 
 function setStart() {
   settingStart = true;
-  alert("Click on a cell to set the start point.");
+  //alert("Click on a cell to set the start point.");
 }
 
 function setEnd() {
   settingEnd = true;
-  alert("Click on a cell to set the destination point.");
+  //alert("Click on a cell to set the destination point.");
 }
