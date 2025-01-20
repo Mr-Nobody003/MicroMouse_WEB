@@ -55,8 +55,10 @@ body {
   }
   
   .cell.path {
+    
     background-color: #00bcd4;
     color: black;
+    transition: background-color 1s ease-in-out;
   }
   
   .cell:hover {

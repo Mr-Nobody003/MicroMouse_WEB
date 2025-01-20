@@ -138,7 +138,9 @@ function reconstructPath(parents, x, y) {
   while (parents[x][y]) {
     const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
     if (!(x === destination[0] && y === destination[1])) {
+      setTimeout(() => {
       cell.classList.add("path");
+     }, 150);
     }
     [x, y] = parents[x][y];
   }
