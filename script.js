@@ -135,15 +135,26 @@ function simulateMicromouse() {
 
 
 function reconstructPath(parents, x, y) {
+  const path = []; // Array to store the path
   while (parents[x][y]) {
-    const cell = document.querySelector(`[data-row="${x}"][data-col="${y}"]`);
-    if (!(x === destination[0] && y === destination[1])) {
-      setTimeout(() => {
-      cell.classList.add("path");
-     }, 150);
-    }
-    [x, y] = parents[x][y];
+    path.push([x, y]); // Add the current cell to the path
+    [x, y] = parents[x][y]; // Move to the parent cell
   }
+  path.reverse(); // Reverse the path to start from the beginning
+
+  // Animate the path with a delay
+
+  path.forEach((cell, index) => {
+
+    //animate until the last cell
+    if (index < path.length - 1) { 
+    setTimeout(() => {
+      const [row, col] = cell;
+      const cellElement = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+      cellElement.classList.add("path");
+    }, index * 150); // Delay each cell by 150ms
+  }
+  });
 }
 
 function clearMaze() {
@@ -174,3 +185,4 @@ function setEnd() {
   settingEnd = true;
   //alert("Click on a cell to set the destination point.");
 }
+
