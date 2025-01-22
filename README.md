@@ -37,7 +37,7 @@ Ensure you have a modern web browser that supports JavaScript and CSS.
 ### Installation
 1. Clone the repository or download the project files.
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Mr-Nobody003/MicroMouse_WEB.git
    ```
 2. Open the `index.html` file in your browser to launch the application.
 
